@@ -1,4 +1,4 @@
-#include <core/memory.h>
+#include <std/core/memory.h>
 #include <check.h>
 
 START_TEST(test_memory_alloc) {

@@ -1,6 +1,6 @@
-#include "containers/darray.h"
-#include "core/memory.h"
-#include "core/logger.h"
+#include "darray.h"
+#include "std/core/memory.h"
+#include "std/core/logger.h"
 
 void *_darray_create(u64 length, u64 stride) {
     u64 header_size = sizeof(DarrayHeader);

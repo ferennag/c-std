@@ -1,9 +1,9 @@
-#include "core/logger.h"
+#include "logger.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "core/logger.h"
+#include "logger.h"
 
 bool init_logging() {
     // TODO create a log file
