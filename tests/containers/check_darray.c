@@ -13,8 +13,26 @@ END_TEST
 START_TEST(test_darray_reserve) {
     u64 *array = darray_reserve(u64, 10);
     ck_assert(array != 0);
-    ck_assert_int_eq(0, darray_length(array));
+    ck_assert_int_eq(10, darray_length(array));
     ck_assert_int_eq(10, darray_capacity(array));
+    darray_destroy(array);
+}
+END_TEST
+
+START_TEST(test_darray_reserve_push) {
+    u64 *array = darray_reserve(u64, 2);
+    ck_assert(array != 0);
+    ck_assert_int_eq(2, darray_length(array));
+    ck_assert_int_eq(2, darray_capacity(array));
+    ck_assert_int_eq(0, array[0]);
+    ck_assert_int_eq(0, array[1]);
+
+    darray_push(array, 33);
+    ck_assert_int_eq(0, array[0]);
+    ck_assert_int_eq(0, array[1]);
+    ck_assert_int_eq(33, array[2]);
+
+
     darray_destroy(array);
 }
 END_TEST
@@ -157,6 +175,7 @@ Suite *darray_suite(void)
     tc_core = tcase_create("Core");
     tcase_add_test(tc_core, test_darray_create);
     tcase_add_test(tc_core, test_darray_reserve);
+    tcase_add_test(tc_core, test_darray_reserve_push);
     tcase_add_test(tc_core, test_darray_push);
     tcase_add_test(tc_core, test_darray_pop);
     tcase_add_test(tc_core, test_darray_insert_at_first);

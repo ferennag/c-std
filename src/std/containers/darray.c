@@ -13,6 +13,13 @@ void *_darray_create(u64 length, u64 stride) {
     return (void *) (array + 1);
 }
 
+void *_darray_reserve(u64 length, u64 stride) {
+    void *array = _darray_create(length, stride);
+    DarrayHeader *header = darray_header(array);
+    header->length = header->capacity;
+    return array;
+}
+
 void _darray_destroy(void *array) {
     DarrayHeader *header = darray_header(array);
     memory_free(header);

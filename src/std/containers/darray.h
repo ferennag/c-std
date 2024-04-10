@@ -10,6 +10,8 @@ typedef struct darray_header {
 
 void *_darray_create(u64 length, u64 stride);
 
+void *_darray_reserve(u64 length, u64 stride);
+
 void _darray_destroy(void *array);
 
 void *_darray_resize(void *array);
@@ -29,7 +31,7 @@ void *_darray_insert_at(void *array, u64 index, void *value_ptr);
     _darray_create(DARRAY_DEFAULT_CAPACITY, sizeof(type))
 
 #define darray_reserve(type, capacity)      \
-    _darray_create(capacity, sizeof(type))
+    _darray_reserve(capacity, sizeof(type))
 
 #define darray_destroy(array) _darray_destroy(array);
 
