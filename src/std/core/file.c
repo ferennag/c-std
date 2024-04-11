@@ -4,12 +4,12 @@
 #include <std/core/logger.h>
 #include <std/core/memory.h>
 
-void *file_read_binary(const char *path) {
+bool file_read_binary(const char *path, BinaryContents *out) {
     FILE *file = fopen(path, "rb");
 
     if (!file) {
         LOG_ERROR("Unable to open file for reading: %s", path);
-        return NULL;
+        return false;
     }
 
     fseek(file, 0, SEEK_END);
@@ -22,8 +22,11 @@ void *file_read_binary(const char *path) {
 
     if (result != 1) {
         LOG_ERROR("Unable to read from file: %s", path);
-        return NULL;
+        return false;
     }
 
-    return buffer;
+    out->data = buffer;
+    out->size = size;
+
+    return true;
 }

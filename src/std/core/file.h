@@ -2,4 +2,9 @@
 
 #include "std/defines.h"
 
-void *file_read_binary(const char *path);
+typedef struct BinaryContents {
+    void *data;
+    u64 size;
+} BinaryContents;
+
+bool file_read_binary(const char *path, BinaryContents *out);
