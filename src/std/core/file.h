@@ -8,3 +8,5 @@ typedef struct BinaryContents {
 } BinaryContents;
 
 bool file_read_binary(const char *path, BinaryContents *out);
+
+bool file_read_text(const char *path, const char **out);
